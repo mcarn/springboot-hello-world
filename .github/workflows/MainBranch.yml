@@ -23,7 +23,7 @@ jobs:
       - name: Maven Verify
         run: mvn -B clean verify -Pintegration-test
       - name: Maven Release
-        run: mvn -B release:prepare release:perform
+        run: mvn -B release:prepare release:perform -DscmReleaseCommitComment="Release"
         env:
           USERNAME: ${{ github.actor }}
           PASSWORD: ${{ secrets.GITHUB_TOKEN }}
