@@ -24,8 +24,8 @@ jobs:
         run: mvn -B clean verify -Pintegration-test
       - name: Maven Release
         run: |
-          git config --global user.name 'Git bot'
-          git config --global user.email 'bot@noreply.github.com'tor }}
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
           mvn -B release:prepare release:perform -DscmReleaseCommitComment="Release"
           
           
