@@ -8,8 +8,9 @@ on:
 jobs:
 
   test:
-    name: Test - Units & Integrations
+    name: Release
     runs-on: ubuntu-18.04
+    environment: springboot-hello-world
 
     steps:
       - uses: actions/checkout@v2
