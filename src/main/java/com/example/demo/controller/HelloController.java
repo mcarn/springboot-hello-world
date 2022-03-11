@@ -11,7 +11,7 @@ public class HelloController {
 
   @GetMapping("/")
   public String hello() {
-    logger.info("In");
+    logger.info("--------------- In ---------------");
     return "Hello world!";
   }
 }
