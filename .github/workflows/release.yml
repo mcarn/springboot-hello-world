@@ -18,15 +18,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.4
-      - name: Maven Package
-        run: mvn -B clean package -DskipTests
-      - name: Maven Verify
-        run: mvn -B clean verify -Pintegration-test
       - name: Maven Release
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-          mvn -B release:prepare release:perform -DscmReleaseCommitComment="Release"
+          mvn -B "-Darguments=-DskipTests -Dmaven.javadoc.skip=true" -Dgoals=package release:perform
           
           
   artifact:
