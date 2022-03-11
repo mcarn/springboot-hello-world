@@ -22,11 +22,22 @@ jobs:
         run: mvn -B clean package -DskipTests
       - name: Maven Verify
         run: mvn -B clean verify -Pintegration-test
-      - name: Maven Release
-        run: |
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-          mvn -B release:prepare release:perform -DscmReleaseCommitComment="Release"
+  
+  release:
+    name: Java Maven release
+    # uses: qcastel/github-actions-maven-release@88522b1841bc65c43d7040c15b0ac0867c2fa7ea
+    uses: qcastel/github-actions-maven-release@v1.12.31
+    with:
+      # Filter the branch to execute the release on
+      release-branch-name: main
+      # If define, this option allows you to define a custom release version number, like ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.0
+      maven-release-version-number: ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.0
+      # The ID of your registry. For example, for docker hub, it is `registry.hub.docker.com`
+      docker-registry-id: registry.hub.docker.com
+      # The username for your docker registry
+      docker-registry-username: ${{ secrets.DOCKERHUB_USERNAME}}
+      # The password for your docker registry
+      docker-registry-password: ${{ secrets.DOCKERHUB_PW}}
           
           
   artifact:
